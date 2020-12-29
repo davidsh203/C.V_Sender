@@ -1,0 +1,23 @@
+<div class="container border border-dark" style="margin-top: 20px;">
+    <div>
+        <u>
+            <h1 class="text-center">C.V SENDER</h1>
+        </u>
+        <form (submit)="send(id_email.value,id_message)">
+            <div class="form-group">
+                <label for="email" class="text-left">Email</label>
+                <input #id_email required id="email" type="email" class="form-control" placeholder="Insert Email">
+            </div>
+            <div class="form-group">
+                <label for="message" class="text-left">Message:</label>
+                <textarea #id_message required id="message" class="form-control" placeholder="Insert Message">{{default_message}}</textarea>
+            </div>
+
+            <div class="text-center">
+                <button type="submit" class="btn btn-success">SEND</button>
+                &nbsp;
+                <button type="reset" class="btn btn-danger">CLEAR</button>
+            </div>
+        </form>
+    </div>
+</div>
