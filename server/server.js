@@ -5,8 +5,6 @@ const cors = require('cors');
 const bodyParser = require('body-parser')
 require('dotenv').config();
 
-
-
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
 
@@ -16,8 +14,7 @@ app.use(bodyParser.json())
 app.use(cors());
 
 app.post('/sendmail', (req, res) => {
-     console.log(req.body.ng_email,req.body.ng_message);
-   
+
     let transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -29,9 +26,17 @@ app.post('/sendmail', (req, res) => {
         from: process.env.mailUser,
         to: req.body.ng_email,
         subject: 'I search my first junior job',
-        text: req.body.ng_message
+        text: req.body.ng_message,
+        attachments: [
+            {
+                path: './files/myFile.pdf'
+            },
+            {
+                //path: './files/hebrew.pdf'
+            }
+        ]
     };
-    console.log("transporter");
+    
     transporter.sendMail(mailOptions, function (error, info) {
         if (error) {
             console.log(error);
@@ -42,8 +47,6 @@ app.post('/sendmail', (req, res) => {
         }
     });
 });
-
-
 
 app.listen(3000, () => { console.log('listen to 3000'); })
 

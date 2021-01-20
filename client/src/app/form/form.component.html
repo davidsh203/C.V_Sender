@@ -22,6 +22,10 @@
                     Invalid email
                 </span>
             </div>
+            <div class="form-group text-center">
+                <div *ngIf="showIcon" class="spinner-border" role="status" >                    
+                </div>
+            </div>
 
 
 
@@ -44,6 +48,26 @@
 
 
         </form>
+        <h1>email sents list</h1>
+
+        <table class=" table table-striped">
+            <tr>
+                <th>Index</th>
+                <th>Email address</th>
+                <th>Message</th>
+            </tr>
+
+            <tr *ngFor="let mail of messageArray; let i = index">
+                <td>{{i+1}}</td>
+                <td>{{mail.email}}</td>
+                <td>{{mail.message}}</td>
+            </tr>
+
+        </table>
+
+        <!-- <p *ngFor="let mail of messageArray; let i = index">
+                {{mail.email}} - {{mail.message}}
+            </p> -->
 
     </div>
 </div>
