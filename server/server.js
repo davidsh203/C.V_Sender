@@ -3,7 +3,16 @@ const nodemailer = require('nodemailer');
 const app = express();
 const cors = require('cors');
 const bodyParser = require('body-parser')
+const fs = require('fs');
 require('dotenv').config();
+arr = [];
+fs.readdirSync('./files').forEach(file => { 
+    obj ={
+    path:"./files/"
+    }
+    obj.path += file;
+    arr.push(obj);
+    }); 
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -27,14 +36,15 @@ app.post('/sendmail', (req, res) => {
         to: req.body.ng_email,
         subject: 'I search my first junior job',
         text: req.body.ng_message,
-        attachments: [
-            {
-                path: './files/myFile.pdf'
-            },
-            {
-                //path: './files/hebrew.pdf'
-            }
-        ]
+        attachments: arr
+        // [
+        //     {
+        //         path: './files/'
+        //     },
+        //     {
+        //         //path: './files/hebrew.pdf'
+        //     }
+        // ]
     };
     
     transporter.sendMail(mailOptions, function (error, info) {

@@ -39,6 +39,7 @@ export class FormComponent implements OnInit {
           console.log(this.messageArray);
 
         } else {
+          this.showIcon=false;
           alert('Server unknown error');
         }
       },
